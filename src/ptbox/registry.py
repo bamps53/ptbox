@@ -131,3 +131,8 @@ for k, v in torch.nn.__dict__.items():
 for k, v in torch.optim.__dict__.items():
     if callable(v):
         OPTIMIZERS.register(v)
+
+# schedulers
+for k, v in torch.optim.lr_scheduler.__dict__.items():
+    if callable(v):
+        SCHEDULERS.register(v)
