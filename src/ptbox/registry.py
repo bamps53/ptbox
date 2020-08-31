@@ -84,7 +84,7 @@ def build_from_config_list(configs: list, registry: Registry, default_args: dict
 
     objects = []
     for c in configs:
-        if hasattr(c, 'take_default_args'):
+        if 'take_default_args' in c.keys():
             c.pop('take_default_args')
             obj = build_from_config(c, registry, default_args)
         else:
@@ -105,7 +105,7 @@ def build_from_config_dict(configs: dict, registry: Registry, default_args: dict
 
     objects = {}
     for name, c in configs.items():
-        if hasattr(c, 'take_default_args'):
+        if 'take_default_args' in c.keys():
             obj = build_from_config(c, registry, default_args)
         else:
             obj = build_from_config(c, registry)
