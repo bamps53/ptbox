@@ -1,7 +1,7 @@
 from typing import Callable
 
 import torch
-
+from omegaconf import DictConfig
 
 # from https://github.com/open-mmlab/mmcv/blob/master/mmcv/utils/registry.py
 class Registry:
@@ -54,7 +54,7 @@ def build_from_config(config: dict, registry: Registry, default_args: dict = Non
         registry (:obj:`Registry`): The registry to search the name from.
         default_args (dict, optional): Default initialization argments.
     """
-    assert isinstance(config, dict) and 'name' in config, print(config)
+    assert (isinstance(config, dict) or isinstance(config, DictConfig)) and 'name' in config, print(config)
     assert isinstance(
         default_args, dict) or default_args is None, print(default_args)
 
@@ -100,7 +100,7 @@ def build_from_config_dict(configs: dict, registry: Registry, default_args: dict
         registry (:obj:`Registry`): The registry to search the name from.
         default_args (dict, optional): Default initialization argments.
     """
-    if not isinstance(configs, dict):
+    if not (isinstance(configs, dict) or isinstance(configs, DictConfig)):
         return {}  # and 'name' in config
 
     objects = {}
