@@ -140,6 +140,6 @@ for k, v in torch.optim.lr_scheduler.__dict__.items():
 # callbacks
 from catalyst.dl import callbacks
 for k, v in callbacks.__dict__.items():
-    if 'Callback' in k:
+    if 'Callback' in k or 'Logger' in k:
         if callable(v) and isinstance(v, type):
             CALLBACKS.register(v)
