@@ -136,3 +136,10 @@ for k, v in torch.optim.__dict__.items():
 for k, v in torch.optim.lr_scheduler.__dict__.items():
     if callable(v):
         SCHEDULERS.register(v)
+
+# callbacks
+from catalyst.dl import callbacks
+for k, v in callbacks.__dict__.items():
+    if 'Callback' in k:
+        if callable(v) and isinstance(v, type):
+            CALLBACKS.register(v)
