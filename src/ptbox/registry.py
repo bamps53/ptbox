@@ -79,7 +79,7 @@ def build_from_config_list(configs: list, registry: Registry, default_args: dict
         registry (:obj:`Registry`): The registry to search the name from.
         default_args (dict, optional): Default initialization argments.
     """
-    if not (isinstance(configs, list) or (isinstance(configs, ListConfig):
+    if not (isinstance(configs, list) or (isinstance(configs, ListConfig)):
         return []  # and 'name' in config
 
     objects = []
