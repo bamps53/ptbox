@@ -120,6 +120,7 @@ SCHEDULERS = Registry('schedulers')
 DATASETS = Registry('datasets')
 CALLBACKS = Registry('callbacks')
 METRICS = Registry('metrics')
+TRANSFORMS = Registry('transforms')
 
 # losses
 for k, v in torch.nn.__dict__.items():
@@ -143,3 +144,9 @@ for k, v in callbacks.__dict__.items():
     if 'Callback' in k or 'Logger' in k:
         if callable(v) and isinstance(v, type):
             CALLBACKS.register(v)
+
+# transforms
+import albumentations
+for k,v in albumentations.__dict__.items():
+    if callable(v) and isinstance(v, type):
+        TRANSFORMS.register(v)
