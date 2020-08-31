@@ -41,7 +41,7 @@ class Registry:
         obj_name = obj.__name__
         if obj_name in self._obj_dict:
             print(f'{obj_name} is already registered in {self.name}')
-            raise KeyError(f'{obj_name} is already registered in {self.name}')
+            # raise KeyError(f'{obj_name} is already registered in {self.name}')
 
         self._obj_dict[obj_name] = obj
         return obj
