@@ -106,6 +106,7 @@ def build_from_config_dict(configs: dict, registry: Registry, default_args: dict
     objects = {}
     for name, c in configs.items():
         if 'take_default_args' in c.keys():
+            c.pop('take_default_args')
             obj = build_from_config(c, registry, default_args)
         else:
             obj = build_from_config(c, registry)
