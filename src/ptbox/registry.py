@@ -1,6 +1,4 @@
 from typing import Callable
-
-import torch
 from omegaconf import DictConfig, ListConfig
 
 # from https://github.com/open-mmlab/mmcv/blob/master/mmcv/utils/registry.py
@@ -122,32 +120,3 @@ DATASETS = Registry('datasets')
 CALLBACKS = Registry('callbacks')
 METRICS = Registry('metrics')
 TRANSFORMS = Registry('transforms')
-
-# losses
-for k, v in torch.nn.__dict__.items():
-    if 'Loss' in k:
-        if callable(v) and isinstance(v, type):
-            LOSSES.register(v)
-
-# optimizers
-for k, v in torch.optim.__dict__.items():
-    if callable(v):
-        OPTIMIZERS.register(v)
-
-# schedulers
-for k, v in torch.optim.lr_scheduler.__dict__.items():
-    if callable(v):
-        SCHEDULERS.register(v)
-
-# callbacks
-from catalyst.dl import callbacks
-for k, v in callbacks.__dict__.items():
-    if 'Callback' in k or 'Logger' in k:
-        if callable(v) and isinstance(v, type):
-            CALLBACKS.register(v)
-
-# transforms
-import albumentations
-for k,v in albumentations.__dict__.items():
-    if callable(v) and isinstance(v, type):
-        TRANSFORMS.register(v)
